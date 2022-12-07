@@ -6,7 +6,7 @@
 /*   By: hmaciel- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:05:12 by hmaciel-          #+#    #+#             */
-/*   Updated: 2022/12/07 14:48:35 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:56:40 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 		return (1);
 	pid = ft_atoi(argv[1]);
-	if(!pid || !argv[2])
+	if (!pid || !argv[2])
 		return (1);
 	signal(SIGUSR1, received_from_server);
 	send_kill(pid, argv[2]);
