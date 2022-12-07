@@ -6,7 +6,7 @@
 #    By: hmaciel- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/07 10:20:50 by hmaciel-          #+#    #+#              #
-#    Updated: 2022/12/07 14:31:33 by hmaciel-         ###   ########.fr        #
+#    Updated: 2022/12/07 14:51:41 by hmaciel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,11 +50,5 @@ fclean:
 	@ $(RM) $(CLIENT) $(SERVER)
 
 re: fclean all
-
-mandatory:	$(CLIENT) $(SERVER)
-bonus:		mandatory
-
-m : mandatory
-b : bonus
 
 .PHONY: all clean fclean re mandatory m bonus b
