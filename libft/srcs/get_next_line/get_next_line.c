@@ -84,7 +84,7 @@ char	*get_buffer(char *str, int fd)
 			return (NULL);
 		}
 		array[bytes] = '\0';
-		str = ft_strjoin_alt(str, array);
+		str = ft_strjoin_gnl(str, array);
 	}
 	free(array);
 	return (str);

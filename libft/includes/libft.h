@@ -105,7 +105,7 @@ void			put_hex(long int np, char x);
 /* GET_NEXT_LINE */
 
 char			*get_next_line(int fd);
-char			*ft_strjoin_alt(char *s1, char *s2);
+char			*ft_strjoin_gnl(char *s1, char *s2);
 char			*get_line(char *str);
 char			*get_rest(char *str);
 char			*get_buffer(char *str, int fd);
