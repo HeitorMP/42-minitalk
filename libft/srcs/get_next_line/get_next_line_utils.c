@@ -6,11 +6,32 @@
 /*   By: hmaciel- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:29:56 by hmaciel-          #+#    #+#             */
-/*   Updated: 2022/11/27 16:50:11 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:21:31 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+char	*ft_strchr_gnl(char *s, int c)
+{
+	int		i;
+	char	*ptr;
+
+	ptr = (char *)s;
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (ptr[i])
+	{
+		if (ptr[i] == c)
+			return (&ptr[i]);
+		else
+			i++;
+	}
+	if (ptr[i] == c)
+		return (&ptr[i]);
+	return (NULL);
+}
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {

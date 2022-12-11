@@ -6,13 +6,14 @@
 /*   By: hmaciel- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:29:01 by hmaciel-          #+#    #+#             */
-/*   Updated: 2022/11/27 16:49:35 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:39:19 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-char	*get_line(char *str)
+static char	*get_line(char *str)
 {
 	char	*line;
 	int		len;
@@ -40,7 +41,7 @@ char	*get_line(char *str)
 	return (line);
 }
 
-char	*get_rest(char *str)
+static char	*get_rest(char *str)
 {
 	int			len;
 	int			len_rest;
@@ -66,7 +67,7 @@ char	*get_rest(char *str)
 	return (rest);
 }
 
-char	*get_buffer(char *str, int fd)
+static char	*get_buffer(char *str, int fd)
 {
 	char	*array;
 	int		bytes;
@@ -75,7 +76,7 @@ char	*get_buffer(char *str, int fd)
 	if (!array)
 		return (NULL);
 	bytes = 1;
-	while (!ft_strchr(str, '\n') && bytes != 0)
+	while (!ft_strchr_gnl(str, '\n') && bytes != 0)
 	{
 		bytes = read(fd, array, BUFFER_SIZE);
 		if (bytes == -1)

@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42porto.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:21:17 by hmaciel-          #+#    #+#             */
-/*   Updated: 2022/11/27 17:48:39 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2022/12/11 20:55:11 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,8 @@ void			put_hex(long int np, char x);
 /* GET_NEXT_LINE */
 
 char			*get_next_line(int fd);
+char			*ft_strchr_gnl(char *s, int c);
 char			*ft_strjoin_gnl(char *s1, char *s2);
-char			*get_line(char *str);
-char			*get_rest(char *str);
-char			*get_buffer(char *str, int fd);
 
 /* UTILS */
 
