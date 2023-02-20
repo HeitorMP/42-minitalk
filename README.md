@@ -40,7 +40,7 @@ You must create a communication program in the form of a client and a server.
 
 ## Installation and Running
 
-Install libft with make
+Install minitalk with make
 
 ```bash
   make
