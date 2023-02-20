@@ -1,70 +1,81 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/07 10:20:50 by hmaciel-          #+#    #+#              #
-#    Updated: 2023/02/18 22:16:14 by hmaciel-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+################################################################################
+#                                     CONFIG                                   #
+################################################################################
 
-# Programs Name
-CLIENT	=	client
-SERVER	=	server
+NAME			:= server
+CLIENT			:= client
+BONUS			:= server_bonus
+BONUS_CLIENT	:= client_bonus
+CC				:= cc
+FLAGS			:= -Wall -Wextra -Werror
+LIBFT			:=	./libft/libft.a
+LIBFT_DIR		:=	./libft
+RM				:= rm -f
 
-CLIENT_BONUS = client_bonus
-SERVER_BONUS = server_bonus
+################################################################################
+#                                 PROGRAM'S SRCS                               #
+################################################################################
 
-#libft Variables
-LIBFT		=	./libft/libft.a
-LIBFT_DIR	=	./libft
+SRCS_S			:= server.c
+SRCS_C			:= client.c
+BONUS_SRCS_S	:= server_bonus.c
+BONUS_SRCS_C	:= client_bonus.c
 
-#Sources Variables
-SRC_C		=	client.c
-SRC_S		=	server.c
-SRC_C_BONUS =	client_bonus.c
-SRC_S_BONUS =	server_bonus.c
-INCLUDES	=	-I. -I$(LIBFT_DIR)
+OBJS_S			:= server.o
+OBJS_C			:= client.o
+BONUS_OBJS_S	:= server.o
+BONUS_OBJS_C	:= client.o
 
-#Compilation
-CC			=	cc
-CFLAG		=	-Wall -Wextra -Werror -g
-RM			=	rm -f
+################################################################################
+#                                  Makefile  objs                              #
+################################################################################
 
-all: $(SERVER) $(CLIENT)
-bonus: $(SERVER_BONUS) $(CLIENT_BONUS)
+CLR_RMV		:= \033[0m
+RED		    := \033[1;31m
+GREEN		:= \033[1;32m
+YELLOW		:= \033[1;33m
+BLUE		:= \033[1;34m
+CYAN 		:= \033[1;36m
 
-$(NAME): all
+${NAME}:			${OBJS_S} ${CLIENT} ${LIBFT}
+					@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW} $(NAME) ${CLR_RMV}..."
+					${CC} ${FLAGS} -o ${NAME} ${OBJS_S} ${LIBFT}
+					@echo "$(GREEN)$(NAME) created[0m ✔️"
 
-$(SERVER): $(LIBFT)
-	@ $(CC) $(CFLAG) $(SRC_S) $(LIBFT) $(INCLUDES) -o $(SERVER)
+${CLIENT}:			${OBJS_C} ${LIBFT}
+					@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW} ${CLIENT} ${CLR_RMV}..."
+					${CC} ${FLAGS} -o ${CLIENT} ${OBJS_C} ${LIBFT}
+					@echo "$(GREEN)$(CLIENT) created[0m ✔️"
 
-$(CLIENT): $(LIBFT)
-	@ $(CC) $(CFLAG) $(SRC_C) $(LIBFT) $(INCLUDES) -o $(CLIENT)
+${BONUS}:			${BONUS_OBJS_S} ${BONUS_CLIENT} ${LIBFT}
+					@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW} ${BONUS} ${CLR_RMV}..."
+					${CC} ${FLAGS} -o ${BONUS} ${BONUS_OBJS_S} ${LIBFT}
+					@echo "$(GREEN)$(BONUS) created[0m ✔️"
 
-$(BONUS): bonus
+${BONUS_CLIENT}:	${BONUS_OBJS_C} ${LIBFT}
+					@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW} ${BONUS_CLIENT} ${CLR_RMV}..."
+					${CC} ${FLAGS} -o ${BONUS_CLIENT} ${BONUS_OBJS_C} ${LIBFT}
+					@echo "$(GREEN) $(BONUS_CLIENT) created[0m ✔️"
 
-$(SERVER_BONUS): $(LIBFT)
-	@ $(CC) $(CFLAG) $(SRC_S_BONUS) $(LIBFT) $(INCLUDES) -o $(SERVER_BONUS)
+${LIBFT}:
+			@ $(MAKE) -C $(LIBFT_DIR)
 
-$(CLIENT_BONUS): $(LIBFT)
-	@ $(CC) $(CFLAG) $(SRC_C_BONUS) $(LIBFT) $(INCLUDES) -o $(CLIENT_BONUS)
+all:		${NAME} ${CLIENT}
 
-$(LIBFT):
-	@ $(MAKE) -C $(LIBFT_DIR)
+bonus:		${BONUS} ${BONUS_CLIENT}
 
 clean:
-	@ $(RM) $(CLIENT) $(SERVER)
-	@ $(RM) $(CLIENT_BONUS) $(SERVER_BONUS)
-	@ $(MAKE) clean -C $(LIBFT_DIR)
+			@ $(MAKE) clean -C $(LIBFT_DIR)
+			@ ${RM} *.o */*.o */*/*.o
+			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
+
+fclean:		clean
+			@ $(MAKE) fclean -C $(LIBFT_DIR)
+			@ ${RM} ${NAME} ${CLIENT} ${BONUS} ${BONUS_CLIENT}
+			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
+
+re:			fclean all
+
+.PHONY:		all clean fclean re
 
 
-fclean:
-	@ $(MAKE) fclean -C $(LIBFT_DIR)
-	@ $(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
-
-re: fclean all
-
-.PHONY: all clean fclean re mandatory m bonus b

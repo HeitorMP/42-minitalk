@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:01:39 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/02/18 22:00:44 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/02/20 10:19:04 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include "libft/includes/libft.h"
 
 char	*join_char(char *str, char c)
 {
@@ -20,11 +19,12 @@ char	*join_char(char *str, char c)
 	int		size;
 
 	i = 0;
+	if (c == 0)
+		return (str);
 	if (!str)
 	{
 		new_str = ft_calloc(sizeof(char), 2);
 		new_str[0] = c;
-		free(str);
 		return (new_str);
 	}
 	size = ft_strlen(str);
@@ -42,8 +42,8 @@ char	*join_char(char *str, char c)
 static void	handler(int sig, siginfo_t *info, void *context)
 {
 	static unsigned char	c;
-	static char				*str;
 	int						client_pid;
+	static char				*str;
 	static int				bits;
 
 	(void)context;
@@ -52,14 +52,15 @@ static void	handler(int sig, siginfo_t *info, void *context)
 		c |= 1;
 	if (bits == 7)
 	{
+		str = join_char(str, c);
 		if (c == '\0')
 		{
 			ft_printf("%s", str);
 			kill(client_pid, SIGUSR1);
+			str = NULL;
 			free(str);
 		}
 		bits = -1;
-		str = join_char(str, c);
 		c = 0;
 	}
 	else

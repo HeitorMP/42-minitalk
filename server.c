@@ -6,12 +6,11 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:01:39 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/02/18 22:00:44 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/02/20 10:19:06 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include "libft/includes/libft.h"
 
 char	*join_char(char *str, char c)
 {

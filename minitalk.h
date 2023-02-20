@@ -15,5 +15,5 @@
 
 # include <signal.h>
 # include <sys/types.h>
-
+# include "./libft/includes/libft.h"
 #endif

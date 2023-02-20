@@ -6,12 +6,11 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:05:12 by hmaciel-          #+#    #+#             */
-/*   Updated: 2023/02/18 20:43:57 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2023/02/20 10:19:09 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include "libft/includes/libft.h"
 
 static void	received_from_server(int signal)
 {
