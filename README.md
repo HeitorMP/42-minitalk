@@ -32,7 +32,7 @@ You must create a communication program in the form of a client and a server.
 
 
 
-## What i learn:
+## What i learned:
  - UNIX Signals
  - Bitwise operations
  - C programming
