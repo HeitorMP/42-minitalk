@@ -2,8 +2,9 @@
 #                                     CONFIG                                   #
 ################################################################################
 
-NAME			:= server
+NAME			:= minitalk
 CLIENT			:= client
+SERVER			:= server
 BONUS			:= server_bonus
 BONUS_CLIENT	:= client_bonus
 CC				:= cc
@@ -37,15 +38,18 @@ YELLOW		:= \033[1;33m
 BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
 
-${NAME}:			${OBJS_S} ${CLIENT} ${LIBFT}
-					@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW} $(NAME) ${CLR_RMV}..."
-					${CC} ${FLAGS} -o ${NAME} ${OBJS_S} ${LIBFT}
-					@echo "$(GREEN)$(NAME) created[0m ✔️"
+${NAME}:			${CLIENT} ${SERVER} ${LIBFT}
 
 ${CLIENT}:			${OBJS_C} ${LIBFT}
 					@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW} ${CLIENT} ${CLR_RMV}..."
 					${CC} ${FLAGS} -o ${CLIENT} ${OBJS_C} ${LIBFT}
 					@echo "$(GREEN)$(CLIENT) created[0m ✔️"
+
+
+${SERVER}:			${OBJS_S} ${LIBFT}
+					@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW} ${SERVER} ${CLR_RMV}..."
+					${CC} ${FLAGS} -o ${SERVER} ${OBJS_S} ${LIBFT}
+					@echo "$(GREEN)$(SERVER) created[0m ✔️"
 
 ${BONUS}:			${BONUS_OBJS_S} ${BONUS_CLIENT} ${LIBFT}
 					@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW} ${BONUS} ${CLR_RMV}..."
@@ -60,7 +64,7 @@ ${BONUS_CLIENT}:	${BONUS_OBJS_C} ${LIBFT}
 ${LIBFT}:
 			@ $(MAKE) -C $(LIBFT_DIR)
 
-all:		${NAME} ${CLIENT}
+all:		${NAME}
 
 bonus:		${BONUS} ${BONUS_CLIENT}
 
@@ -71,7 +75,7 @@ clean:
 
 fclean:		clean
 			@ $(MAKE) fclean -C $(LIBFT_DIR)
-			@ ${RM} ${NAME} ${CLIENT} ${BONUS} ${BONUS_CLIENT}
+			@ ${RM} ${SERVER} ${CLIENT} ${BONUS} ${BONUS_CLIENT}
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re:			fclean all
